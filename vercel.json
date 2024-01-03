@@ -1,0 +1,8 @@
+{
+    "crons": [
+      {
+        "path": "/api/sendMails",
+        "schedule": "30 18 * * *"
+      }
+    ]
+  }
