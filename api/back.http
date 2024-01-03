@@ -1,0 +1,1147 @@
+@server = https://femsa-api.vercel.app
+# @server = http://localhost:9999
+
+@testToken = Bearer JOSEBOZZONE
+@bingoFile = TG Almacen Status 1.xlsx
+
+
+##
+###
+# Get dashboard
+POST {{server}}/api/v3/back/dashboard
+Authorization: {{testToken}}
+content-type: application/json
+
+{
+    "year": 2023,
+    "month": 9,
+    "channel": "ALMACENES",
+    "group": "ORO"
+}
+
+
+##
+###
+# Get list of comercializadores
+GET {{server}}/api/v3/back/comercializadores/all
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get list of users
+GET {{server}}/api/v2/back/users
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Get specific user info
+
+GET {{server}}/api/v2/back/users/jose.bozzone
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Create user
+POST {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb",
+    "password": "contra",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "client01@cocacola.com"
+}
+
+##
+###
+# Update user
+PUT {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb",
+    "first_name": "Jhon"
+}
+
+
+##
+###
+# Delete user
+DELETE {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb"
+}
+
+##
+###
+# Get client variables
+GET {{server}}/api/v2/back/clients/variables
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get list of clients
+GET {{server}}/api/v2/back/clients
+Authorization: {{testToken}}
+content-type: application/json
+
+###404
+##
+###
+# Get specific client info
+
+GET {{server}}/api/v3/back/clients/111300116183
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get list of clients
+GET {{server}}/api/v3/back/clients/pagination/0
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Register bingo file
+POST {{server}}/api/v3/back/files
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "user_id": "joseb",
+    "file_name": "Enero2021.csv",
+    "type": "competencia",
+    "url": ""
+}
+
+
+
+
+
+
+###
+# PING
+GET {{server}}/ping
+content-type: application/json
+
+##
+### aca 500
+# Get client variables
+GET {{server}}/api/v2/back/process/bingo/{{bingoFile}}
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Get Coupons
+GET {{server}}/api/v3/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+##
+###
+# Create coupon
+POST {{server}}/api/v3/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1b.webp?alt=media&token=ef6297d7-e0c3-48d9-a87e-a811579100e7",
+    "enabled": false
+}
+
+
+##
+###
+# Update coupon
+PUT {{server}}/api/v2/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 15,
+    "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "enabled": true
+}
+
+##
+###
+# Get enabled sliders
+GET {{server}}/api/v3/back/sliders/clients
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+##
+###
+# Get all sliders
+GET {{server}}/api/v3/back/sliders/consumers
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+
+
+##
+###
+# Create slider
+POST {{server}}/api/v3/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "image": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "channel": "ALMACENES",
+    "gec": "BRONCE",
+    "type": ""
+}
+
+
+##
+###
+# Update slider
+PUT {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 7, 
+    "image": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "type": "clients",
+    "enabled": false
+
+}
+
+
+##
+###
+# Delete slider
+DELETE  {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 7
+}
+
+
+##
+###
+# Get bingos
+GET {{server}}/api/v2/back/bingos
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Delete specific bingo
+DELETE {{server}}/api/v3/back/bingos/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+
+##
+###
+# Get specific bingo
+GET {{server}}/api/v2/back/bingos/2
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+##
+###
+# Update bingo
+POST {{server}}/api/v2/back/bingos
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "name": "Nov 2022",
+  "type": "01",
+  "year_month": "2209",
+  "header": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspo…_05.jpg?alt=media&token=0bb710bb-2428-4bed-b026-4f0a082c4dee",
+  "mission_1": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none",
+    "label": "2l RET x 9",
+    "brand_id": 16,
+    "target": [
+      {
+        "sku": 84475,
+        "qty": 6
+      },
+      {
+        "sku": 84654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_2": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none",
+    "label": "2l RET x 5",
+     "brand_id": 1,
+    "target": [
+      {
+        "sku": 99655,
+        "qty": 6
+      },
+      {
+        "sku": 99654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_3": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none",
+    "label": "2l RET x 9",
+    "brand_id": 16,
+    "target": [
+      {
+        "sku": 84475,
+        "qty": 6
+      },
+      {
+        "sku": 84654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_4": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none",
+    "label": "2l RET x 9",
+    "brand_id": 16,
+    "target": [
+      {
+        "sku": 84475,
+        "qty": 6
+      },
+      {
+        "sku": 84654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_5": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none",
+    "label": "2l RET x 5",
+     "brand_id": 1,
+    "target": [
+      {
+        "sku": 99655,
+        "qty": 6
+      },
+      {
+        "sku": 99654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_6": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none",
+    "label": "2l RET x 9",
+    "brand_id": 16,
+    "target": [
+      {
+        "sku": 84475,
+        "qty": 6
+      },
+      {
+        "sku": 84654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_7": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none",
+    "label": "2l RET x 9",
+    "brand_id": 16,
+    "target": [
+      {
+        "sku": 84475,
+        "qty": 6
+      },
+      {
+        "sku": 84654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_8": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none",
+    "label": "2l RET x 5",
+     "brand_id": 1,
+    "target": [
+      {
+        "sku": 99655,
+        "qty": 6
+      },
+      {
+        "sku": 99654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_9": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none",
+    "label": "2l RET x 5",
+     "brand_id": 1,
+    "target": [
+      {
+        "sku": 99655,
+        "qty": 6
+      },
+      {
+        "sku": 99654,
+        "qty": 3
+      }
+    ]
+  },
+  "mission_10": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none",
+    "label": "2l RET x 5",
+     "brand_id": 1,
+    "target": [
+      {
+        "sku": 99655,
+        "qty": 6
+      },
+      {
+        "sku": 99654,
+        "qty": 3
+      }
+    ]
+  },
+  "line_1": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_11.jpg?alt=media&token=ffa918a0-c08e-4e3b-be9f-ed90e8bc75bf",
+  "line_2": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_12.jpg?alt=media&token=b9240cee-9978-4f2c-8faf-b055fb106521",
+  "expire_at": "2022-10-01T00:00:00.000Z"
+  
+}
+
+
+##
+###
+# Get list of brands
+GET {{server}}/api/v3/back/brands
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get list of products
+GET {{server}}/api/v3/back/products
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get list of products by brand
+GET {{server}}/api/v3/back/products/by_brand/8
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get list of products by SKU
+GET {{server}}/api/v3/back/products/by_id/2809
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get variables
+GET {{server}}/api/v3/back/variables
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get Competences
+GET {{server}}/api/v3/back/competences
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Get specific competence
+GET {{server}}/api/v3/back/competences/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Delete specific competence
+DELETE {{server}}/api/v3/back/competences/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Create competence
+POST {{server}}/api/v3/back/competences
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "name": "pruebaaa",
+  "type": "channel",
+  "image": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspo…_3_2023?alt=media&token=00d50b74-47e3-4996-8a16-07f5c0c6c4e2",
+  "terms": "Los terminos de la competencia son....",
+  "channel": "ALMACENES",
+  "file_id": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspo…el.xlsx?alt=media&token=3ec533c3-b7c0-4e41-9357-3aa2581be35e",
+  "gec": "DIAMANTE",
+  "start_date": "2023-03-01",
+  "due_date": "2023-03-30",
+  "enabled": true
+}
+
+##
+###
+# Update competence
+PUT {{server}}/api/v3/back/competences
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "id": 1,
+  "name": "FEBRERO 2023",
+  "type": "clients",
+  "image": "Imagens",
+  "terms": "Los terminos de la competencia son....",
+  "channel": null,
+  "gec": null,
+  "file_id": "1",
+  "start_date": "2023-03-01",
+  "due_date": "2023-03-30",
+  "enabled": true
+}
+
+##
+###
+# Get Monthly missions
+GET {{server}}/api/v3/back/monthly_missions
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Get specific mission
+GET {{server}}/api/v3/back/monthly_missions/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Delete specific mission
+DELETE {{server}}/api/v3/back/monthly_missions/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Create Mission
+POST {{server}}/api/v3/back/monthly_missions
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "name": "Junio 2023",
+  "year": 2023,
+  "month": 2,
+  "channel": "ALMACENES",
+  "gec": "PLATA",
+  "missions": [
+    {
+      "cmd": "sku",
+      "label": "RET 2L",
+      "sku": [123, 45],
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "target": 10,
+      "points": 25
+    },
+    {
+      "cmd": "photo",
+      "label": "TOMAR FOTO",
+      "instructions": "Tomar una foto del frente de la heladera",
+      "points": 40
+    }
+  ],
+  "bonus": 400,
+  "deleted": false
+}
+
+##
+###
+# Update Mission
+PUT {{server}}/api/v3/back/monthly_missions/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+  "name": "Enero 2023",
+  "year": 2023,
+  "month": 1,
+  "channel": "ALMACENES",
+  "gec": "PLATA",
+  "missions": [
+    {
+      "cmd": "sku",
+      "label": "RET 2L",
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "target": 10,
+      "points": 25
+    },
+    {
+      "cmd": "photo",
+      "label": "TOMAR FOTO",
+      "instructions": "Tomar una foto del frente de la heladera",
+      "points": 40
+    }
+  ],
+  "bonus": 400,
+  "deleted": false
+}
+
+##
+###
+# Get Imperdibles
+GET {{server}}/api/v3/back/imperdibles
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Get specific Imperdible
+GET {{server}}/api/v3/back/imperdibles/3
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Delete specific Imperdible
+DELETE {{server}}/api/v3/back/mperdibles/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Create Imperdible
+POST {{server}}/api/v3/back/imperdibles
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "name": "Enero KIOSCO LATON",
+  "year": 2023,
+  "month": 2,
+  "channel": "KIOSCOS",
+  "gec": "LATON",
+  "items": [
+    {
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "label": "RET 2L",
+      "skus": [123,234],
+      "target": 10,
+      "points": 25
+    },
+    {
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "label": "RET 1,5L",
+      "skus": [555,666],
+      "target": 5,
+      "points": 20
+    }
+  ]
+}
+##
+###
+# Update Imperdible
+PUT {{server}}/api/v3/back/imperdibles/3
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+  "name": "Enero 23 KIOSCO LATON",
+  "year": 2023,
+  "month": 2,
+  "channel": "KIOSCOS",
+  "gec": "LATON",
+  "items": [
+    {
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "label": "RET 2L",
+      "skus": [123,2222,33333],
+      "target": 10,
+      "points": 30
+    },
+    {
+      "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+      "label": "RET 1,5L",
+      "skus": [555,666],
+      "target": 5,
+      "points": 20
+    }
+  ]
+}
+
+
+##
+###
+# Get list of notification
+GET {{server}}/api/v3/back/notifications
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get specific notification
+GET {{server}}/api/v3/back/notifications/1
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Create notification
+POST {{server}}/api/v3/back/notifications
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "title": "Latitas",
+    "description": "Llevate una lata de 350cc",
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/notifications%2Fae8de1bf-7935-4d76-99cb-d7ff00be7aa3.jpg?alt=media&token=899ae690-5faf-4935-ab24-ea321cf17fc0",
+    "channel": "ALMACENES",
+    "gec": "BRONCE",
+    "due_date": "2023-04-20"
+}
+
+##
+###
+# Update notification
+PUT {{server}}/api/v3/back/notifications/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+    "title": "RetornableS",
+    "description": "Llevate un envase retornable",
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/notifications%2Fae8de1bf-7935-4d76-99cb-d7ff00be7aa3.jpg?alt=media&token=899ae690-5faf-4935-ab24-ea321cf17fc0",
+    "channel": "ALMACENES",
+    "gec": "BRONCE"
+}
+
+##
+###
+# Delete notification
+DELETE {{server}}/api/v3/back/notifications/2
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+}
+
+##
+###
+# Get list of news
+GET {{server}}/api/v3/back/news
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get specific news
+GET {{server}}/api/v3/back/news/1
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Create news
+POST {{server}}/api/v3/back/news
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/news%2F1a.webp?alt=media&token=aa56aa5f-5325-4a38-a0df-11f907b8cbcb",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/news%2F1b.webp?alt=media&token=22033b04-eb03-4683-bf86-647023dbb40b",
+    "channel": "ALMACENES",
+    "gec": "BRONCE",
+    "due_date": "2023-03-30",
+    "name": "test"
+}
+
+##
+###
+# Update news
+PUT {{server}}/api/v3/back/news/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+   "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/news%2F1a.webp?alt=media&token=aa56aa5f-5325-4a38-a0df-11f907b8cbcb",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/news%2F1b.webp?alt=media&token=22033b04-eb03-4683-bf86-647023dbb40b",
+    "channel": "ALMACENES",
+    "gec": "BRONCE",
+    "due_date": "2023-03-31"
+}
+
+
+#
+###
+# GET file upload status
+GET {{server}}/api/v3/back/files
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get client variables
+GET {{server}}/api/v3/back/variables
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get ManualPoints
+GET {{server}}/api/v3/back/manual_points
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get specific manual point
+GET {{server}}/api/v3/back/manual_points/7
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Create manual Point
+POST {{server}}/api/v3/back/manual_points
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+    "description": "Incentivo mensual",
+    "client_id": ["111300029111", "111300029112",  "111300029120"],
+    "points": 200,
+    "user_id": "jose.bozzone"
+}
+
+
+##
+###
+# Get Catalogs
+GET {{server}}/api/v3/back/catalogs
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Get specific catalogue
+GET {{server}}/api/v3/back/catalogs/1
+Authorization: {{testToken}}
+content-type: application/json
+##
+###
+# Create catalogue
+POST {{server}}/api/v3/back/catalogs
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "category": "PRODUCTO",
+    "channel": "TEST",
+    "gec": "BLIVE",
+    "points": 222,
+    "sku": 12
+}
+
+##
+###
+# Update catalogue
+PUT {{server}}/api/v3/back/catalogs
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+    "id": 1,
+    "description": "COCA-COLA LIGHT",
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/news%2F1a.webp?alt=media&token=aa56aa5f-5325-4a38-a0df-11f907b8cbcb",
+    "category": "PRODUCTOS",
+    "stock": -99,
+    "points": 200
+}
+##
+###
+# Delete catalogue
+DELETE {{server}}/api/v3/back/catalogs/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+}
+
+##
+###
+# Get specific manual point
+GET {{server}}/api/v3/back/report/wallet/competence/1
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get specific manual point
+GET {{server}}/api/v3/back/report/wallet/points/:id
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get Bonus
+GET {{server}}/api/v3/back/bonus
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get specific Bonus
+GET {{server}}/api/v3/back/bonus/1
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Create Bonus
+POST {{server}}/api/v3/back/bonus
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "title": "RESPINDE Y GANA....",
+    "channel": "ALMACENES",
+    "gec": "ORO",
+    "month": 6,
+    "year": 2023,
+    "questions": [
+      {
+            "type": "text",
+            "question": "Que opinas....?"
+        },
+        {
+            "type": "option",
+            "question": "Que marca vendes mas",
+            "options": ["coca", "fanta", "sprite"]
+        },
+        {
+            "type": "multiple",
+            "question": "Que medidas vendes mas en coca-cola?",
+            "options": ["500cc", "1l", "1,5l.", "2,25l"]
+        }
+    ]
+}
+
+##
+###
+# Update Bonus
+PUT {{server}}/api/v3/back/bonus
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+    "id": 1,
+    "title": "RESPONDE Y GANA....",
+    "channel": "ALMACENES",
+    "gec": "ORO",
+    "month": 6,
+    "year": 2023,
+    "questions": [
+      {
+            "type": "text",
+            "question": "Que opinas....?"
+        },
+        {
+            "type": "option",
+            "question": "Que marca vendes mas",
+            "options": ["coca", "fanta", "sprite"]
+        },
+        {
+            "type": "multiple",
+            "question": "Que medidas vendes mas en coca-cola?",
+            "options": ["500cc", "1l", "1,5l.", "2,25l"]
+        }
+    ]
+}
+
+##
+###
+# Delete Bonus
+DELETE {{server}}/api/v3/back/bonus/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+}
+
+##
+###
+# Get 
+GET {{server}}/api/v3/back/report/wallet/competence/1
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get competence ranking report
+GET {{server}}/api/v3/back/report/competence/ranking/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+##
+###
+# Get competence detail by client
+GET {{server}}/api/v3/back/report/competence/details/1/111300149072
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get Catalog Stock
+GET {{server}}/api/v3/back/catalogs/stock
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get Canjes
+GET {{server}}/api/v3/back/canjes/pedido
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get Canjes
+GET {{server}}/api/v3/back/canjes/entregado
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# GET Images list
+POST {{server}}/api/v3/back/images
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "list": [{"name": "aquarius.png", "type":"logos_con_fondo"},
+             {"name": "cc_move.png", "type":"logos_con_fondo"}]
+}  
+
+
+
+##
+###
+# Update image label
+PUT {{server}}/api/v3/back/images
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+   "name": "aquarius.png",
+   "type": "logos_con_fondo",
+   "label": "Aquarius"
+}
+
+
+##
+###
+# UPDATE Products Stock
+PUT {{server}}/api/v3/back/catalogs/stock
+Authorization: {{testToken}}
+content-type: application/json
+
+{
+   "products": [ {"sku": 91, "qty": 5 },
+                { "sku": 187, "qty": 3}]
+}
+
+##
+###
+# Get specific client info
+GET {{server}}/api/v3/back/clients/111300118618
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get FINAL RANKING COMPETENCE
+GET {{server}}/api/v3/back/competences/final_ranking/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Save file for processing before uploading to Firebase Storage
+POST {{server}}/api/v3/back/process/upload_file
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "type": "venta_directa",
+    "user_id": "joseb2",
+    "file_name": "directa_23082023.csv"
+}
+
+##
+###
+# Get list of uploaded files
+GET {{server}}/api/v3/back/process/uploaded_files
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get list of clients
+GET {{server}}/api/v3/back/active_clients/pagination/0
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Get manual exchanges
+GET {{server}}/api/v3/back/manual_exchanges
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Create manual exchange for specific clients
+POST {{server}}/api/v3/back/manual_exchanges
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+  "title": "Promo bienvenida",
+  "client_ids": ["111111111113", "111111111114"],
+  "user_id": "jose.bozzone",
+  "skus": [32],
+  "qty": 2
+}
+
+#
+###
+# Create manual exchange for a channel
+POST {{server}}/api/v3/back/manual_exchanges
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+  "title": "Promo bienvenida",
+  "channel": "TEST",
+  "gec": "BLIVE",
+  "user_id": "jose.bozzone",
+  "skus": [32, 2809],
+  "qty": 2
+}
+

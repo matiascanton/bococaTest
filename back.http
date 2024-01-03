@@ -1,0 +1,197 @@
+@server = https://femsa.weareblive.io
+# @server = http://localhost:9999
+
+@testToken = Bearer JOSEBOZZONE
+@bingoFile = TG Almacen Status 1.xlsx
+
+
+###
+# PING
+GET {{server}}/ping
+content-type: application/json
+
+##
+###
+# Get client variables
+GET {{server}}/api/v2/back/process/bingo/{{bingoFile}}
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Get Coupons
+GET {{server}}/api/v2/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+##
+###
+# Create coupon
+POST {{server}}/api/v2/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1b.webp?alt=media&token=ef6297d7-e0c3-48d9-a87e-a811579100e7",
+    "enabled": true
+}
+
+
+##
+###
+# Update coupon
+PUT {{server}}/api/v2/back/promotions/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 3,
+    "img_brief": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "img_description": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1b.webp?alt=media&token=ef6297d7-e0c3-48d9-a87e-a811579100e7",
+    "enabled": true
+}
+
+
+
+##
+###
+# Get enabled sliders
+GET {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+##
+###
+# Get all sliders
+GET {{server}}/api/v2/back/sliders/all
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+
+
+##
+###
+# Create slider
+POST {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "image": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "type": "clients"
+}
+
+
+##
+###
+# Update slider
+PUT {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 7, 
+    "image": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/coupons%2F1a.webp?alt=media&token=632f9f00-838b-4699-ba84-08a975c538b2",
+    "type": "clients",
+    "enabled": false
+
+}
+
+
+##
+###
+# Delete slider
+DELETE  {{server}}/api/v2/back/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": 8 
+}
+
+
+##
+###
+# Get bingos
+GET {{server}}/api/v2/back/bingos
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+
+##
+###
+# Get specific bingo
+GET {{server}}/api/v2/back/bingos/2
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+##
+###
+# Update bingo
+PUT {{server}}/api/v2/back/bingos
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+  "id": 2,
+  "name": "SETIEMBRE 2022",
+  "type": "01",
+  "year_month": "2209",
+  "header": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_header.jpg?alt=media&token=c5376aa7-05d9-4916-997c-7c4ef07df7da",
+  "mission_1": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_01.jpg?alt=media&token=75ca2a42-0cb6-471e-acae-ed370bf1a396",
+    "cmd": "none"
+  },
+  "mission_2": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_02.jpg?alt=media&token=8aaccd72-2ddf-4bad-8425-ef2b1da9d66b",
+    "cmd": "none"
+  },
+  "mission_3": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_03.jpg?alt=media&token=cf620ff7-8701-458b-8049-e6f9742e65ed",
+    "cmd": "none"
+  },
+  "mission_4": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_04.jpg?alt=media&token=14db5815-cf39-4ee5-b91d-60110b9df19d",
+    "cmd": "none"
+  },
+  "mission_5": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_05.jpg?alt=media&token=0bb710bb-2428-4bed-b026-4f0a082c4dee",
+    "cmd": "take_photo"
+  },
+  "mission_6": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_06.jpg?alt=media&token=0336dcb6-709a-4f44-8504-31dfe92530a1",
+    "cmd": "none"
+  },
+  "mission_7": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_07.jpg?alt=media&token=585df7d8-3879-4310-bbc6-206f0b2735f6",
+    "cmd": "none"
+  },
+  "mission_8": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_08.jpg?alt=media&token=44ea69ae-e920-417e-b951-27c9711d46e6",
+    "cmd": "none"
+  },
+  "mission_9": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_09.jpg?alt=media&token=33571c8e-f02b-4e44-a887-8b0ef0f2b58d",
+    "cmd": "none"
+  },
+  "mission_10": {
+    "img": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_10.jpg?alt=media&token=5cc57490-07b2-4ced-acc3-4c56e08ea613",
+    "cmd": "none"
+  },
+  "line_1": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_11.jpg?alt=media&token=ffa918a0-c08e-4e3b-be9f-ed90e8bc75bf",
+  "line_2": "https://firebasestorage.googleapis.com/v0/b/femsa-arg.appspot.com/o/bingos%2F2205%2Fimages%2F01_12.jpg?alt=media&token=b9240cee-9978-4f2c-8faf-b055fb106521",
+  "expire_at": "2022-10-01T00:00:00.000Z"
+  
+}
+
+

@@ -1,0 +1,176 @@
+# @server = https://cocacola.trazzart.com
+@server = https://femsa.weareblive.io
+# @server = http://localhost:9999
+​
+@testToken = Bearer JOSEBOZZONE
+@loginToken = Bearer FeMsA@2022
+@adminToken = Bearer BlIeVe@2022
+# @variosToken = Bearer SoRtEoS@2022
+# @appToken = Bearer ALANCITO@2022
+@token = Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk4OTdjZjk0NTllMjU0ZmYxYzY3YTRlYjZlZmVhNTJmMjFhOWJhMTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRElFR08gQ0FNSU5PIiwicm9sZSI6ImNsaWVudCIsImlkIjoiMTExMTExMTExMTEyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2ZlbXNhLWFyZyIsImF1ZCI6ImZlbXNhLWFyZyIsImF1dGhfdGltZSI6MTY1NjUxMTQzOSwidXNlcl9pZCI6InRFZGprNTdOTTNXN3liSk1pN2ZvQk0yV1hIMjIiLCJzdWIiOiJ0RWRqazU3Tk0zVzd5YkpNaTdmb0JNMldYSDIyIiwiaWF0IjoxNjU2NTExNDQwLCJleHAiOjE2NTY1MTUwNDAsImVtYWlsIjoiYXBwY2xpZW50ZXNAYmxpdmUuY29tLmFyIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFwcGNsaWVudGVzQGJsaXZlLmNvbS5hciJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.gUVNYwAXchT2HavvG9HhOj5KuDHOzh90D6bW-VCcNLQVxEQLpg4w-nLSySoE7aM6cpY4IMDB7i_Uj_do4QQOnC504e09PJC41CH6SkXz9lvVi-nZPwH_4WcK8Sb09ho02NPO3L198PtXpVI9QzNBeCVmQ1ACfOeRJeh-g0eIuXu_rFAQ5xc-IZRfUIjBZanQsRDmsDUosJR6_PWYdQyD5jDX-D5eIdTEhG6cMsE85XDq0B1VWKL7XMXk8um7FcP_tu9nHu0ETKe_16xhRrda4dcJXlbt-g-0bWfTfSJSCz-OBTiaT_DsNCgd6__EWFIt2YTc-HE48yULuw27r4MccQ
+​
+@clientId = 111300015306
+​
+​
+###
+# PING
+GET {{server}}/ping
+content-type: application/json
+
+##
+###
+# Get client variables
+GET {{server}}/api/v2/clients/variables
+Authorization: {{loginToken}}
+content-type: application/json
+
+###
+# Signup
+POST {{server}}/api/v2/clients/signup
+Authorization: {{loginToken}}
+content-type: application/json
+
+{
+   "email": "appclientes3@blive.com.ar", 
+   "franchise": "FEMSA", 
+   "femsa_id": "111111112",
+   "password": "123456"
+}
+
+###
+# Login
+POST {{server}}/api/v2/clients/login
+Authorization: {{loginToken}}
+content-type: application/json
+
+{
+   "email": "appclientes@blive.com.ar", 
+   "password": "123456"
+}
+
+###
+# Reset password
+POST {{server}}/generic/v2/reset_password
+content-type: application/json
+
+{
+   "email": "josebozzone@gmail.com"
+}
+
+##
+###
+# GET client info
+GET {{server}}/api/v2/clients/info
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# GET favourites list
+GET {{server}}/api/v2/clients/coupons/favourites
+Authorization: {{testToken}}
+content-type: application/json
+
+##
+###
+# Add coupon to favourites
+POST {{server}}/api/v2/clients/coupons/favourites
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+   "coupon_id": 1
+}
+
+##
+###
+# Delete coupon from favourites
+DELETE {{server}}/api/v2/clients/coupons/favourites
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+   "coupon_id": 2
+}
+
+##
+###
+# Get sliders
+GET {{server}}/api/v2/clients/sliders
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+##
+###
+# Get coupons
+GET {{server}}/api/v2/clients/coupons
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+#
+###
+# Get news
+GET {{server}}/api/v2/clients/news
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+##
+###
+# Get notifications
+GET {{server}}/api/v2/clients/notifications
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+##
+###
+# Get bingo
+GET {{server}}/api/v2/clients/bingos
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get bingo details
+GET {{server}}/api/v2/clients/bingos/1
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get Promos summary
+GET {{server}}/api/v2/clients/promos/summary
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Get Cta Cte
+GET {{server}}/api/v2/clients/promos/ctacte
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+
+###
+# VALIDATE CLIENT DATA
+POST {{server}}/api/v2/clients/validate
+Authorization: {{loginToken}}
+content-type: application/json
+
+{
+   "femsa_id": "300000497",
+   "franchise": "FEMSA"
+}
+
+
+
+
+
+
+
+
+
+

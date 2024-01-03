@@ -1,0 +1,11 @@
+.custom-button {
+    color: black;
+    border: 2px solid #fe0019c9;
+    background-color: white;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .custom-button:hover {
+    background-color: #fe0019c9;
+    color: white;
+  }

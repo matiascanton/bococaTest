@@ -1,0 +1,70 @@
+@server = https://femsa.weareblive.io
+@testToken = Bearer JOSEBOZZONE
+##
+###
+# Login user
+POST {{server}}/api/v3/back/users/login
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "asd@jp.com",
+    "password": "password"
+}
+
+##
+###
+# Get list of users
+GET {{server}}/api/v3/back/users
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Get specific user info
+
+GET {{server}}/api/v3/back/users/jose.bozzone
+Authorization: {{testToken}}
+content-type: application/json
+
+
+##
+###
+# Create user
+POST {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb",
+    "password": "contra",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "client01@cocacola.com"
+}
+
+##
+###
+# Update user
+PUT {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb3",
+    "first_name": "John",
+    "profile":"superadmin"
+}
+
+
+##
+###
+# Delete user
+DELETE {{server}}/api/v2/back/users
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "id": "joseb"
+}

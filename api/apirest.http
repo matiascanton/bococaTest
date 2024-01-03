@@ -1,0 +1,237 @@
+@server = https://cocacola.trazzart.com
+
+@adminToken = Bearer BlIeVe@2022
+@clientId = 111300015306
+###
+# PING
+GET {{server}}/ping
+content-type: application/json
+##
+###
+# Get client variables
+GET {{server}}/admin/v1/clients/variables
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# Get clients
+GET {{server}}/admin/v1/clients
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# Get specific client
+GET {{server}}/admin/v1/clients/{{clientId}}
+Authorization: {{adminToken}}
+content-type: application/json
+###
+# PING
+GET {{server}}/ping
+content-type: application/json
+##
+###
+# Burn coupon
+POST {{server}}/api/v1/coupons/burn  HTTP/1.1
+Authorization: {{adminToken}}
+Content-Type: application/json
+
+{
+   “couponId”: 1,
+   “qrCode”: “femsa_.a123b”
+}
+
+##
+###
+# GET ALL users
+GET {{server}}/admin/v1/users/
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# LOGIN user
+POST {{server}}/admin/v1/users/login
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: “alan”,
+   “password”: “password”
+}
+
+##
+###
+# CREATE user
+POST {{server}}/admin/v1/users/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: “jose”,
+   “password”: “password”,
+   “first_name”: “Jose”,
+   “last_name”: “Bozzone”,
+   “email”: “jose@gmail.com”
+}
+
+##
+###
+# UPDATE user
+PUT {{server}}/admin/v1/users/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: “jose”,
+   “enabled”: true,
+}
+
+##
+###
+# DELETE user
+DELETE {{server}}/admin/v1/users/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: “jose”
+}
+
+##
+###
+# GET ALL sliders
+GET {{server}}/admin/v1/sliders/
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# CREATE slider
+POST {{server}}/admin/v1/sliders/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “image”: “Cualquiercosa”
+}
+
+##
+###
+# UPDATE slider
+PUT {{server}}/admin/v1/sliders/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: 4,
+   “enabled”: true,
+   “image”: “otraimagen”
+}
+
+##
+###
+# DELETE user
+DELETE {{server}}/admin/v1/sliders/
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: 4
+}
+
+##
+###
+# GET entire trxs
+GET {{server}}/admin/v1/trxs/
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# Get coupons
+GET {{server}}/admin/v1/coupons
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# Create coupon
+POST {{server}}/admin/v1/coupons
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “title”: “titulo”,
+   “description”: “description”,
+   “image_1": “imagen1”,
+   “image_2": “imagen2”,
+   “due_date”:“2022-03-30”
+}
+
+##
+###
+# Update coupon
+PUT {{server}}/admin/v1/coupons
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: 27,
+   “title”: “titulo”,
+   “description”: “description2",
+   “image_1”: “imagen1",
+   “image_2”: “imagen2",
+   “due_date”:“2022-03-30"
+}
+
+##
+###
+# Get shops
+GET {{server}}/admin/v1/shops
+Authorization: {{adminToken}}
+content-type: application/json
+##
+###
+# Create shop
+POST {{server}}/admin/v1/shops
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “shop_name”: “BURGERKING”,
+   “cuit”: “20202020202",
+   “owner”: “ALAN”,
+   “blive_client”: 1234,
+   “femsa_client”: 123123,
+   “address”: “”,
+   “city”: “Salta”,
+   “state”: “Salta”,
+   “zip”: “4400",
+   “lat”: -24.04044,
+   “lng”: -65.12123,
+   “email”: “info@burgerking.com.ar”,
+   “phone”: “3874462238",
+   “qr_code”: “elPunto@03"
+}
+
+##
+###
+# Update shop
+PUT {{server}}/admin/v1/shops
+Authorization: {{adminToken}}
+content-type: application/json
+
+{
+   “id”: 12,
+   “shop_name”: “BURGER KING”,
+   “cuit”: “20202020202”,
+   “owner”: “ALAN”,
+   “blive_client”: 1234,
+   “femsa_client”: 123123,
+   “address”: “”,
+   “city”: “Salta”,
+   “state”: “Salta”,
+   “zip”: “4400”,
+   “lat”: -24.04044,
+   “lng”: -65.12123,
+   “email”: “info@burgerking.com.ar”,
+   “phone”: “3874462238”,
+   “qr_code”: “elPunto@03”,
+   “enabled” : true
+}
