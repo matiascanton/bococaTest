@@ -1,15 +1,19 @@
 // api/sendMails.js
 
 import nodemailer from 'nodemailer';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 //import { Email } from './email';
 import axios from "axios";
-import { API_VERSION3, BASE_URL, TOKEN } from "../src/app/configs/settingsConfig";
 import { useDispatch } from "react-redux";
 
+const API_VERSION3 = "/api/v3";
+const BASE_URL = "https://femsa-api.vercel.app";
+const TOKEN = `Bearer JOSEBOZZONE`;
 
 const getUploadedFiles = createAsyncThunk(
     "uploadsApp/getUploadedFiles",
     async () => {
+        console.log('test1')
         const response = await axios.get(
             BASE_URL + API_VERSION3 + "/back/process/uploaded_files",
             {
