@@ -5,6 +5,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 //import { Email } from './email.html'
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import cocaLogo from '../public/assets/images/logo/canalCOCA-logo.png'
 
 const API_VERSION3 = "/api/v3";
 const BASE_URL = "https://femsa-api.vercel.app";
@@ -24,10 +25,14 @@ const sendMails = async () => {
         const products = datos.filter(obj => obj.type === "products")
 
         const fechaHoy = moment().format('DD/MM/YYYY');
+        console.log('fechaHoy', fechaHoy)
         const test = moment(ventaDirecta.updated_at).format('DD/MM/YYYY')
+        console.log('test', test)
+        console.log('fecha', ventaDirecta.updated_at)
+        console.log('fecha', new Date())
         //const fechaFormateada = moment(ventaDirecta.updated_at);
         //const diasHabiles = fechaHoy.diff(test, 'days');
-        const diasHabiles = Math.ceil(moment.duration(fechaHoy.toDate() - test.toDate()).asDays());
+        //const diasHabiles = Math.ceil(moment.duration(fechaHoy.toDate() - test.toDate()).asDays());
         //const diasHabiles2 = fechaHoy.diff(moment(comercializadores.updated_at).format('DD/MM/YYYY'), 'days');
         // Verificar si la diferencia supera los 4 días hábiles
         /*if (diasHabiles > 2) {
@@ -35,7 +40,7 @@ const sendMails = async () => {
         }*/
 
 
-        console.log('diasHabiles', diasHabiles)
+        //console.log('diasHabiles', diasHabiles)
         //console.log('diasHabiles2', diasHabiles2)
 
 
@@ -316,7 +321,7 @@ a{
  
 	      <tr>
           <td valign="middle" class="hero bg_white" style="padding: 3em 0 2em 0;">
-            <img src="../public/assets/images/logo/canalCOCA-logo.png" alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
+            <img src=${cocaLogo} alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
           </td>
 	      </tr><!-- end tr -->
 				<tr>
