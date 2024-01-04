@@ -1,11 +1,10 @@
 // api/sendMails.js
-
 import nodemailer from 'nodemailer';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-//import { Email } from './email.html'
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import cocaLogo from '../public/assets/images/logo/canalCOCA-logo.png'
+import cocaLogo from './canalCOCA-logo.png';
+
 
 const API_VERSION3 = "/api/v3";
 const BASE_URL = "https://femsa-api.vercel.app";
