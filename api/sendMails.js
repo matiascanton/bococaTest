@@ -10,7 +10,7 @@ const API_VERSION3 = "/api/v3";
 const BASE_URL = "https://femsa-api.vercel.app";
 const TOKEN = `Bearer JOSEBOZZONE`;
 
-const getUploadedFiles = createAsyncThunk(
+/*const getUploadedFiles = createAsyncThunk(
     "uploadsApp/getUploadedFiles",
     async () => {
         console.log('test1')
@@ -23,18 +23,16 @@ const getUploadedFiles = createAsyncThunk(
         const data = await response.data;
         return data;
     }
-);
+);*/
 
 const sendMails = async () => {
     try {
-        const dispatch = useDispatch();
-        dispatch(getUploadedFiles()).then((resp) => {
-            console.log('restpppp1111', resp.payload)
-            let ventaDirecta = resp.payload.filter(obj => obj.type === "venta_directa");
-            let ventaIndirecta = resp.payload.filter(obj => obj.type === "venta_indirecta");
-            let comercializadores = resp.payload.filter(obj => obj.type === "comercializadores");
-            let products = resp.payload.filter(obj => obj.type === "products")
+
+        const response = await axios.get(BASE_URL + API_VERSION3 + "/back/process/uploaded_files", {
+            headers: { Authorization: TOKEN },
         });
+        const datos = response.data;
+        console.log('data', datos)
 
         try {
             let transporter = nodemailer.createTransport({
