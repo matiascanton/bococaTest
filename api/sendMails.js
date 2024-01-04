@@ -18,14 +18,25 @@ const sendMails = async () => {
             headers: { Authorization: TOKEN },
         });
         const datos = response.data;
-        const fechaHoy = moment().format('DD/MM/YYYY');
-        console.log('data', datos)
-        console.log('fechaHoy', fechaHoy)
         const ventaDirecta = datos.filter(obj => obj.type === "venta_directa");
         const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
-        console.log('ventaDirecta', ventaDirecta)
+
+        const fechaHoy = moment();
+        //const fechaFormateada = moment(ventaDirecta.updated_at);
+        const diasHabiles = fechaHoy.diff(moment(ventaDirecta.updated_at), 'days');
+        const diasHabiles2 = fechaHoy.diff(moment(comercializadores.updated_at), 'days');
+        // Verificar si la diferencia supera los 4 días hábiles
+        /*if (diasHabiles > 2) {
+
+        }*/
+
+
+        console.log('diasHabiles', diasHabiles)
+        console.log('diasHabiles2', diasHabiles2)
+
+
         try {
             let transporter = nodemailer.createTransport({
                 host: "email-smtp.us-east-1.amazonaws.com",
