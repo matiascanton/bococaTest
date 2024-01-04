@@ -1,5 +1,5 @@
 // api/sendMails.js
-import { render } from '@react-email/render';
+
 import nodemailer from 'nodemailer';
 import { Email } from './email';
 
