@@ -23,10 +23,10 @@ const sendMails = async () => {
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
 
-        const fechaHoy = moment();
+        const fechaHoy = moment().format('DD/MM/YYYY');
         //const fechaFormateada = moment(ventaDirecta.updated_at);
-        const diasHabiles = fechaHoy.diff(moment(ventaDirecta.updated_at), 'days');
-        const diasHabiles2 = fechaHoy.diff(moment(comercializadores.updated_at), 'days');
+        const diasHabiles = fechaHoy.diff(moment(ventaDirecta.updated_at).format('DD/MM/YYYY'), 'days');
+        const diasHabiles2 = fechaHoy.diff(moment(comercializadores.updated_at).format('DD/MM/YYYY'), 'days');
         // Verificar si la diferencia supera los 4 días hábiles
         /*if (diasHabiles > 2) {
 
