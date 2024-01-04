@@ -2,28 +2,14 @@
 
 import nodemailer from 'nodemailer';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-//import { Email } from './email';
+import { Email } from './email.html'
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
 const API_VERSION3 = "/api/v3";
 const BASE_URL = "https://femsa-api.vercel.app";
 const TOKEN = `Bearer JOSEBOZZONE`;
-
-/*const getUploadedFiles = createAsyncThunk(
-    "uploadsApp/getUploadedFiles",
-    async () => {
-        console.log('test1')
-        const response = await axios.get(
-            BASE_URL + API_VERSION3 + "/back/process/uploaded_files",
-            {
-                headers: { Authorization: TOKEN },
-            }
-        );
-        const data = await response.data;
-        return data;
-    }
-);*/
+import moment from 'moment';
 
 const sendMails = async () => {
     try {
@@ -32,8 +18,14 @@ const sendMails = async () => {
             headers: { Authorization: TOKEN },
         });
         const datos = response.data;
+        const fechaHoy = moment().format('DD/MM/YYYY');
         console.log('data', datos)
-
+        console.log('fechaHoy', fechaHoy)
+        const ventaDirecta = datos.filter(obj => obj.type === "venta_directa");
+        const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
+        const comercializadores = datos.filter(obj => obj.type === "comercializadores");
+        const products = datos.filter(obj => obj.type === "products")
+        console.log('ventaDirecta', ventaDirecta)
         try {
             let transporter = nodemailer.createTransport({
                 host: "email-smtp.us-east-1.amazonaws.com",
@@ -52,10 +44,12 @@ const sendMails = async () => {
             let to = 'matiasacanton@gmail.com'
             let subject = 'TEST'
             let text = ''
-            let html = `<Html lang="en">
+            let html = { Email }
+
+            /*`<Html lang="en">
                             <h1>Recordatorio de carga de archivos</h1>
                             <Button href="https://bo.femsa.ar/uploads">IR</Button>
-                        </Html>`
+                        </Html>`*/
 
 
             let info = await transporter.sendMail({
@@ -72,6 +66,7 @@ const sendMails = async () => {
         } catch (err) {
             console.log('error', err);
         }
+
         console.log('Envío de correos electrónicos realizado con éxito.');
 
     } catch (error) {
