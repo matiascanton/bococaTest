@@ -3,7 +3,7 @@
 import nodemailer from 'nodemailer';
 //import { Email } from './email';
 import axios from "axios";
-import { API_VERSION3, BASE_URL, TOKEN } from "app/configs/settingsConfig";
+import { API_VERSION3, BASE_URL, TOKEN } from "../src/app/configs/settingsConfig";
 import { useDispatch } from "react-redux";
 
 
