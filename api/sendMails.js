@@ -26,7 +26,8 @@ const sendMails = async () => {
         const fechaHoy = moment().format('DD/MM/YYYY');
         const test = moment(ventaDirecta.updated_at).format('DD/MM/YYYY')
         //const fechaFormateada = moment(ventaDirecta.updated_at);
-        const diasHabiles = fechaHoy.diff(test, 'days');
+        //const diasHabiles = fechaHoy.diff(test, 'days');
+        const diasHabiles = Math.ceil(moment.duration(fechaHoy.toDate() - test.toDate()).asDays());
         //const diasHabiles2 = fechaHoy.diff(moment(comercializadores.updated_at).format('DD/MM/YYYY'), 'days');
         // Verificar si la diferencia supera los 4 días hábiles
         /*if (diasHabiles > 2) {
