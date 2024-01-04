@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import cocaLogo from './canalCOCA-logo.png';
+import cocaLogo from '/canalCOCA-logo.png';
 
 
 const API_VERSION3 = "/api/v3";
