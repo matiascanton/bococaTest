@@ -2,17 +2,37 @@
 
 import nodemailer from 'nodemailer';
 //import { Email } from './email';
+import axios from "axios";
+import { API_VERSION3, BASE_URL, TOKEN } from "app/configs/settingsConfig";
+import { useDispatch } from "react-redux";
 
 
+const getUploadedFiles = createAsyncThunk(
+    "uploadsApp/getUploadedFiles",
+    async () => {
+        const response = await axios.get(
+            BASE_URL + API_VERSION3 + "/back/process/uploaded_files",
+            {
+                headers: { Authorization: TOKEN },
+            }
+        );
+        const data = await response.data;
+        return data;
+    }
+);
 
 const sendMails = async () => {
     try {
+        const dispatch = useDispatch();
+        dispatch(getUploadedFiles()).then((resp) => {
+            console.log('restpppp1111', resp.payload)
+            let ventaDirecta = resp.payload.filter(obj => obj.type === "venta_directa");
+            let ventaIndirecta = resp.payload.filter(obj => obj.type === "venta_indirecta");
+            let comercializadores = resp.payload.filter(obj => obj.type === "comercializadores");
+            let products = resp.payload.filter(obj => obj.type === "products")
+        });
 
-        // Lógica de envío de correos electrónicos aquí
-
-        // Mensaje para imprimir en la consola
         try {
-            // create reusable transporter object using the default SMTP transport
             let transporter = nodemailer.createTransport({
                 host: "email-smtp.us-east-1.amazonaws.com",
                 port: "587",
@@ -26,21 +46,14 @@ const sendMails = async () => {
                     minVersion: "TLSv1.2"
                 },
             });
-            // esto lo generaliza
-            // auth: {
-            //   user:procces.env.Email, "patricio.dfernandez@gmail.com", // generated ethereal user
-            //   pass:process.env.PASSORD "xztu fijl qljr btzh", // generated ethereal password
-            // },
+
             let to = 'matiasacanton@gmail.com'
             let subject = 'TEST'
             let text = ''
             let html = `<Html lang="en">
-            <Button href={url}>Click me</Button>
-          </Html>`
-
-            // '"Se registro " <usuariologueado@g.com>'l
-            // send mail with defined transport object
-
+                            <h1>Recordatorio de carga de archivos</h1>
+                            <Button href="https://bo.femsa.ar/uploads">IR</Button>
+                        </Html>`
 
 
             let info = await transporter.sendMail({
@@ -52,23 +65,14 @@ const sendMails = async () => {
             });
             console.log("Message senntttttttttt correct");
 
-            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-            // Preview only available when sending through an Ethereal account
             //console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         } catch (err) {
             console.log('error', err);
         }
         console.log('Envío de correos electrónicos realizado con éxito.');
-        console.log('----------------------------------.');
-
-        // Mensaje para escribir en un archivo
-
 
     } catch (error) {
-        // Manejar errores aquí
-
-        // Imprimir errores en la consola y en el archivo
         console.error('Error al enviar correos electrónicos:', error);
     }
 };
