@@ -1,9 +1,10 @@
 // api/sendMails.js
+
 import nodemailer from 'nodemailer';
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import cocaLogo from '/canalCOCA-logo.png';
 
 
 const API_VERSION3 = "/api/v3";
@@ -39,7 +40,7 @@ const sendMails = async () => {
         }*/
 
 
-        //console.log('diasHabiles', diasHabiles)
+        console.log('diasHabiles', diasHabiles)
         //console.log('diasHabiles2', diasHabiles2)
 
 
@@ -320,7 +321,7 @@ a{
  
 	      <tr>
           <td valign="middle" class="hero bg_white" style="padding: 3em 0 2em 0;">
-            <img src=${cocaLogo} alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
+            <img src="./canalCOCA-logo.png" alt="coca" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
           </td>
 	      </tr><!-- end tr -->
 				<tr>
