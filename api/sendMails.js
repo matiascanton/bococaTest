@@ -23,12 +23,12 @@ const sendMails = async () => {
         const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
-
+        console.log('datos', datos)
         const fechaHoy = moment().format('DD/MM/YYYY');
         console.log('fechaHoy', fechaHoy)
         const test = moment(ventaDirecta.updated_at).format('DD/MM/YYYY')
         console.log('test', test)
-        console.log('fecha', ventaDirecta.updated_at)
+        console.log('fecha', ventaDirecta.updated_at) //undefined?
         console.log('fecha', new Date())
         //const fechaFormateada = moment(ventaDirecta.updated_at);
         //const diasHabiles = fechaHoy.diff(test, 'days');
@@ -40,7 +40,7 @@ const sendMails = async () => {
         }*/
 
 
-        console.log('diasHabiles', diasHabiles)
+        //console.log('diasHabiles', diasHabiles)
         //console.log('diasHabiles2', diasHabiles2)
 
 
