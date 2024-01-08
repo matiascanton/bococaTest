@@ -14,25 +14,29 @@ import moment from 'moment';
 
 const sendMails = async () => {
     try {
-
+        const fechaHoy = new Date();
+        console.log('fechaHoy', fechaHoy)
         const response = await axios.get(BASE_URL + API_VERSION3 + "/back/process/uploaded_files", {
             headers: { Authorization: TOKEN },
         });
         const datos = response.data;
+        console.log('datos', datos)
+
         const ventaDirecta = datos.filter(obj => obj.type === "venta_directa");
         const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
-        console.log('datos', datos)
-        const fechaHoy = new Date();
-        console.log('fechaHoy', fechaHoy)
-        //console.log('fechaHoy2', moment())
-        const test = new Date(ventaDirecta[0].updated_at)
+
+        const fechaDirecta = Math.floor(fechaHoy - new Date(ventaDirecta[0].updated_at) / (1000 * 60 * 60 * 24))
+        const fechaIndirecta = fechaHoy - new Date(ventaIndirecta[0].updated_at)
+        const fechaComer = fechaHoy - new Date(comercializadores[0].updated_at)
+        const fechaProdu = fechaHoy - new Date(products[0].updated_at)
+
         const uno = fechaHoy - test
-        console.log('test', test)
-        console.log('uno', uno)
-        const cuenta = Math.floor(uno / (1000 * 60 * 60 * 24))
-        console.log('fechadif', cuenta)
+        console.log('fechaDirecta', fechaDirecta)
+        console.log('fechaIndirecta', fechaIndirecta)
+        //const cuenta = Math.floor(uno / (1000 * 60 * 60 * 24))
+        // console.log('fechadif', cuenta)
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
         //const fechaFormateada = moment(ventaDirecta.updated_at);
         //const diasHabiles = fechaHoy.diff(test, 'days');
