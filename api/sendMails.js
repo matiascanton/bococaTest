@@ -24,12 +24,12 @@ const sendMails = async () => {
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
         console.log('datos', datos)
-        const fechaHoy = moment().format('YYYY-MM-DD');
+        const fechaHoy = new Date();
         console.log('fechaHoy', fechaHoy)
         //console.log('fechaHoy2', moment())
-        const test = moment(ventaDirecta[0].updated_at).format('YYYY-MM-DD')
+        const test = ventaDirecta[0].updated_at
         console.log('test', test)
-        console.log('fechadif', moment(fechaHoy).diff(moment(test), 'days'))
+        console.log('fechadif', Math.floor(fechaHoy - test) / (1000 * 60 * 60 * 24))
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
         //const fechaFormateada = moment(ventaDirecta.updated_at);
         //const diasHabiles = fechaHoy.diff(test, 'days');
