@@ -28,7 +28,7 @@ const sendMails = async () => {
         console.log('fechaHoy', fechaHoy)
         //console.log('fechaHoy2', moment())
         const test = ventaDirecta[0].updated_at
-        const uno = fechaHoy.getTime() - test.getTime()
+        const uno = fechaHoy - test
         console.log('test', test)
         console.log('fechadif', Math.floor(uno / (1000 * 60 * 60 * 24)))
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
