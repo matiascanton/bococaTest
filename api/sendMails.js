@@ -26,10 +26,9 @@ const sendMails = async () => {
         console.log('datos', datos)
         const fechaHoy = moment().format('DD/MM/YYYY');
         console.log('fechaHoy', fechaHoy)
+        console.log('fechaHoy2', moment())
         const test = moment(ventaDirecta[0].updated_at).format('DD/MM/YYYY')
-
         console.log('test', test)
-        console.log('fecha', moment(ventaDirecta[0]).format('DD/MM/YYYY')) //undefined?
         console.log('fechadif', moment(fechaHoy).diff(moment(test), 'days'))
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
         //const fechaFormateada = moment(ventaDirecta.updated_at);
@@ -62,7 +61,7 @@ const sendMails = async () => {
             });
 
             let to = 'matiasacanton@gmail.com'
-            let subject = 'TEST'
+            let subject = 'Recordatorio de Actualizacion'
             let text = ''
             let html = `
 
@@ -321,11 +320,11 @@ a{
     	<!-- BEGIN BODY -->
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
  
-	      <tr>
+      <!--  <tr>
           <td valign="middle" class="hero bg_white" style="padding: 3em 0 2em 0;">
             <img src="./canalCOCA-logo.png" alt="coca" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
           </td>
-	      </tr><!-- end tr -->
+	      </tr> -->
 				<tr>
           <td valign="middle" class="hero bg_white" style="padding: 2em 0 4em 0;">
             <table>
