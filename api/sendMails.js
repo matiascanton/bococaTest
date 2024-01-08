@@ -26,10 +26,10 @@ const sendMails = async () => {
         console.log('datos', datos)
         const fechaHoy = moment().format('DD/MM/YYYY');
         console.log('fechaHoy', fechaHoy)
-        const test = moment(ventaDirecta.updated_at).format('DD/MM/YYYY')
+        const test = moment(ventaDirecta[0].updated_at).format('DD/MM/YYYY')
 
         console.log('test', test)
-        console.log('fecha', ventaDirecta) //undefined?
+        console.log('fecha', moment(ventaDirecta[0]).format('DD/MM/YYYY')) //undefined?
         console.log('fechadif', moment(fechaHoy).diff(moment(test), 'days'))
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
         //const fechaFormateada = moment(ventaDirecta.updated_at);
