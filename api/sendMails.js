@@ -26,19 +26,22 @@ const sendMails = async () => {
         const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
         const comercializadores = datos.filter(obj => obj.type === "comercializadores");
         const products = datos.filter(obj => obj.type === "products")
-
+        console.log('ventaDirecta', ventaDirecta)
+        console.log('ventaIndirecta', ventaIndirecta)
+        console.log('comercializadores', comercializadores)
+        console.log('products', products)
         const fechaDirecta = new Date(ventaDirecta[0].updated_at)
-        const fechaIndirecta = new Date(ventaIndirecta[0].updated_at)
-        const fechaComer = new Date(comercializadores[0].updated_at)
-        const fechaProdu = new Date(products[0].updated_at)
+        //const fechaIndirecta = new Date(ventaIndirecta[0].updated_at)
+        //const fechaComer = new Date(comercializadores[0].updated_at)
+        //const fechaProdu = new Date(products[0].updated_at)
 
 
         const restaDirecta = Math.floor((fechaHoy - fechaDirecta) / (1000 * 60 * 60 * 24))
-        const restaIndirecta = Math.floor((fechaHoy - fechaIndirecta) / (1000 * 60 * 60 * 24))
-        const restaComer = Math.floor((fechaHoy - fechaComer) / (1000 * 60 * 60 * 24))
-        const restaProdu = Math.floor((fechaHoy - fechaProdu) / (1000 * 60 * 60 * 24))
+        // const restaIndirecta = Math.floor((fechaHoy - fechaIndirecta) / (1000 * 60 * 60 * 24))
+        // const restaComer = Math.floor((fechaHoy - fechaComer) / (1000 * 60 * 60 * 24))
+        // const restaProdu = Math.floor((fechaHoy - fechaProdu) / (1000 * 60 * 60 * 24))
 
-        console.log('rest', restaDirecta, restaIndirecta, restaComer, restaProdu)
+        console.log('rest', restaDirecta)
         //const cuenta = Math.floor(uno / (1000 * 60 * 60 * 24))
         //console.log('fechadif', cuenta)
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
