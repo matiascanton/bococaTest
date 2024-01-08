@@ -27,10 +27,12 @@ const sendMails = async () => {
         const fechaHoy = new Date();
         console.log('fechaHoy', fechaHoy)
         //console.log('fechaHoy2', moment())
-        const test = ventaDirecta[0].updated_at
+        const test = new Date(ventaDirecta[0].updated_at)
         const uno = fechaHoy - test
         console.log('test', test)
-        console.log('fechadif', Math.floor(uno / (1000 * 60 * 60 * 24)))
+        console.log('uno', uno)
+        const cuenta = Math.floor(uno / (1000 * 60 * 60 * 24))
+        console.log('fechadif', cuenta)
         // console.log('diferencia', fechaHoy.diff(test, 'days');)
         //const fechaFormateada = moment(ventaDirecta.updated_at);
         //const diasHabiles = fechaHoy.diff(test, 'days');
