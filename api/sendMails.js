@@ -335,10 +335,10 @@ const sendMails = async () => {
     const responseEmail = await axios.get(BASE_URL + API_VERSION3 + "/back/alerts/email", {
         headers: { Authorization: TOKEN },
     });
-    console.log('responseEmail', responseEmail)
+    const datosEmail = responseEmail.data;
     const datos = response.data;
     console.log('datos', datos)
-
+    console.log('datosEmail', datosEmail)
     const ventaDirecta = datos.filter(obj => obj.type === "venta_directa");
     const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
     const comercializadores = datos.filter(obj => obj.type === "comercializadores");
@@ -369,7 +369,7 @@ const sendMails = async () => {
     const restaClientes = Math.floor((fechaHoy - fechaClientes) / (1000 * 60 * 60 * 24))
 
 
-    responseEmail.map((item) => {
+    datosEmail.map((item) => {
         console.log('item', item)
         if (item.purchases && restaDirecta >= 3) {
             sendIt('Compras Directa', item.email, restaDirecta)
