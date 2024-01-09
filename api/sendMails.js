@@ -335,7 +335,7 @@ const sendMails = async () => {
     const responseEmail = await axios.get(BASE_URL + API_VERSION3 + "/back/alerts/email", {
         headers: { Authorization: TOKEN },
     });
-
+    console.log('responseEmail', responseEmail)
     const datos = response.data;
     console.log('datos', datos)
 
@@ -357,8 +357,10 @@ const sendMails = async () => {
     const fechaProdu = new Date(products[0]?.updated_at)
     const fechaPremios = new Date(premios[0]?.updated_at)
     const fechaClientes = new Date(clientes[0]?.updated_at)
+
     console.log('fechaComer', fechaComer)
     console.log('fechaComer2', fechaComer.getMonth(), fechaHoy.getMonth())
+
     const restaDirecta = Math.floor((fechaHoy - fechaDirecta) / (1000 * 60 * 60 * 24))
     const restaIndirecta = Math.floor((fechaHoy - fechaIndirecta) / (1000 * 60 * 60 * 24))
     const restaComer = Math.floor((fechaHoy - fechaComer) / (1000 * 60 * 60 * 24))
