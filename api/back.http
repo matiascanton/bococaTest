@@ -1145,3 +1145,41 @@ content-type: application/json
   "qty": 2
 }
 
+##
+###
+# GET alerts' email notification lists
+GET {{server}}/api/v3/back/alerts/email
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+##
+###
+# Add email alert
+POST {{server}}/api/v3/back/alerts/email
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+
+{
+    "email": "matiasacanton@gmail.com",
+    "purchases": true,
+    "clients": false,
+    "products": false,
+    "commercials": true,
+    "prizes": false
+}
+
+##
+###
+# Update email alert
+PUT {{server}}/api/v3/back/alerts/email
+Authorization: Bearer JOSEBOZZONE
+content-type: application/json
+{
+    "email": "test@canalcocacola.com",
+    "purchases": true,
+    "clients": false,
+    "products": true,
+    "commercials": true,
+    "prizes": true
+}
+
