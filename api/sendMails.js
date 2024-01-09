@@ -328,7 +328,7 @@ color: rgba(255,255,255,.4);
 
 const sendMails = async () => {
     const fechaHoy = new Date();
-    console.log('fechaHoy', fechaHoy)
+    //console.log('fechaHoy', fechaHoy)
     const response = await axios.get(BASE_URL + API_VERSION3 + "/back/process/uploaded_files", {
         headers: { Authorization: TOKEN },
     });
@@ -346,10 +346,10 @@ const sendMails = async () => {
     const clientes = datos.filter(obj => obj.type === "clients")
     const premios = datos.filter(obj => obj.type === "prizes")
 
-    console.log('ventaDirecta', ventaDirecta)
-    console.log('ventaIndirecta', ventaIndirecta)
-    console.log('comercializadores', comercializadores)
-    console.log('products', products)
+    //console.log('ventaDirecta', ventaDirecta)
+    //console.log('ventaIndirecta', ventaIndirecta)
+    //console.log('comercializadores', comercializadores)
+    //console.log('products', products)
 
     const fechaDirecta = new Date(ventaDirecta[0]?.updated_at)
     const fechaIndirecta = new Date(ventaIndirecta[0]?.updated_at)
@@ -358,8 +358,8 @@ const sendMails = async () => {
     const fechaPremios = new Date(premios[0]?.updated_at)
     const fechaClientes = new Date(clientes[0]?.updated_at)
 
-    console.log('fechaComer', fechaComer)
-    console.log('fechaComer2', fechaComer.getMonth(), fechaHoy.getMonth())
+    //console.log('fechaComer', fechaComer)
+    //console.log('fechaComer2', fechaComer.getMonth(), fechaHoy.getMonth())
 
     const restaDirecta = Math.floor((fechaHoy - fechaDirecta) / (1000 * 60 * 60 * 24))
     const restaIndirecta = Math.floor((fechaHoy - fechaIndirecta) / (1000 * 60 * 60 * 24))
@@ -369,7 +369,8 @@ const sendMails = async () => {
     const restaClientes = Math.floor((fechaHoy - fechaClientes) / (1000 * 60 * 60 * 24))
 
 
-    responseEmail?.map((item) => {
+    responseEmail.map((item) => {
+        console.log('item', item)
         if (item.purchases && restaDirecta >= 3) {
             sendIt('Compras Directa', item.email, restaDirecta)
         }
