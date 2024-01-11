@@ -14,7 +14,7 @@ import moment from 'moment';
 
 const sendIt = async (title, destiny, days) => {
     try {
-        let transporter = nodemailer.createTransport({
+        /*let transporter = nodemailer.createTransport({
             host: "email-smtp.us-east-1.amazonaws.com",
             port: "587",
             auth: {
@@ -26,7 +26,7 @@ const sendIt = async (title, destiny, days) => {
                 rejectUnauthorized: true,
                 minVersion: "TLSv1.2"
             },
-        });
+        });*/
 
         let to = destiny
         let subject = `Recordatorio de Actualizacion ${title}`
@@ -150,7 +150,7 @@ display: inline-block;
 }
 .btn.btn-primary{
 border-radius: 5px;
-background: #30e3ca;
+background: #fe0019c9;
 color: #ffffff;
 }
 .btn.btn-white{
@@ -290,17 +290,11 @@ color: rgba(255,255,255,.4);
 
   <tr>
       <td valign="middle" class="hero bg_white" style="padding: 2em 0 4em 0;">
-        
-            
-                
                     <div class="text" style="padding: 0 2.5em; text-align: center;">
                         <h2>Recordatorio de actualizacion</h2>
                         <h3>Ya han pasado mas de ${days} dias</h3>
                         <p><a href="#" class="btn btn-primary">Subir Archivos</a></p>
                     </div>
-                
-            
-        
       </td>
       </tr>
   </table>
@@ -337,8 +331,10 @@ const sendMails = async () => {
     });
     const datosEmail = responseEmail.data;
     const datos = response.data;
+
     console.log('datos', datos)
     console.log('datosEmail', datosEmail)
+
     const ventaDirecta = datos.filter(obj => obj.type === "venta_directa");
     const ventaIndirecta = datos.filter(obj => obj.type === "venta_indirecta");
     const comercializadores = datos.filter(obj => obj.type === "comercializadores");
@@ -346,10 +342,6 @@ const sendMails = async () => {
     const clientes = datos.filter(obj => obj.type === "clients")
     const premios = datos.filter(obj => obj.type === "prizes")
 
-    //console.log('ventaDirecta', ventaDirecta)
-    //console.log('ventaIndirecta', ventaIndirecta)
-    //console.log('comercializadores', comercializadores)
-    //console.log('products', products)
 
     const fechaDirecta = new Date(ventaDirecta[0]?.updated_at)
     const fechaIndirecta = new Date(ventaIndirecta[0]?.updated_at)
@@ -358,8 +350,6 @@ const sendMails = async () => {
     const fechaPremios = new Date(premios[0]?.updated_at)
     const fechaClientes = new Date(clientes[0]?.updated_at)
 
-    //console.log('fechaComer', fechaComer)
-    //console.log('fechaComer2', fechaComer.getMonth(), fechaHoy.getMonth())
 
     const restaDirecta = Math.floor((fechaHoy - fechaDirecta) / (1000 * 60 * 60 * 24))
     const restaIndirecta = Math.floor((fechaHoy - fechaIndirecta) / (1000 * 60 * 60 * 24))
@@ -372,22 +362,22 @@ const sendMails = async () => {
     datosEmail.map((item) => {
         console.log('item', item)
         if (item.purchases && restaDirecta >= 3) {
-            sendIt('Compras Directa', item.email, restaDirecta)
+            //sendIt('Compras Directa', item.email, restaDirecta)
         }
         if (item.purchases && restaIndirecta >= 3) {
-            sendIt('Compras Indirecta', item.email, restaIndirecta)
+            //sendIt('Compras Indirecta', item.email, restaIndirecta)
         }
         if (item.clients && restaClientes >= 4 && restaClientes % 4 === 0 && fechaClientes.getMonth() !== fechaHoy.getMonth()) {
-            sendIt('Clientes', item.email, restaClientes)
+            //sendIt('Clientes', item.email, restaClientes)
         }
         if (item.products && restaProdu >= 4 && restaProdu % 4 === 0 && fechaProdu.getMonth() !== fechaHoy.getMonth()) {
-            sendIt('Productos', item.email, restaProdu)
+            // sendIt('Productos', item.email, restaProdu)
         }
         if (item.commercials && restaComer >= 4 && restaComer % 4 === 0 && fechaComer.getMonth() !== fechaHoy.getMonth()) {
-            sendIt('Comercializadores', item.email, restaComer)
+            //sendIt('Comercializadores', item.email, restaComer)
         }
         if (item.prizes && restaPremios >= 4 && restaPremios % 4 === 0 && fechaPremios.getMonth() !== fechaHoy.getMonth()) {
-            sendIt('Premios', item.email, restaPremios)
+            // sendIt('Premios', item.email, restaPremios)
         }
     })
 
